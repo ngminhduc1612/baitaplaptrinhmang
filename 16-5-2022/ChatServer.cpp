@@ -46,10 +46,7 @@ DWORD WINAPI ClientThread(LPVOID lpParam)
         buf[ret] = 0;
         
         ret = sscanf(buf, "%s %s %s", cmd, acc, tmp);
-
-        // Luu id vao account
-        clients[numclients].client = client;
-        clients[numclients].id = acc;
+        
         if (ret != 2)
         {
             const  char* msg = "[CONNECT] ERROR error_message\n";
@@ -64,6 +61,10 @@ DWORD WINAPI ClientThread(LPVOID lpParam)
             }
             else
             {
+                // Luu id vao account
+                clients[numclients].client = client;
+                clients[numclients].id = acc;
+                
                 const  char* msg = "[CONNECT] OK\n";
                 send(client, msg, strlen(msg), 0);
 
